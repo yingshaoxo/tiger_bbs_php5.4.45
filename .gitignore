@@ -1,0 +1,16 @@
+temp/
+userfile/
+tpl/classic/js/
+
+.idea/
+.vscode/
+*.swp
+*.zip
+*.gz
+*.tgz
+*.bz2
+*.xz
+*.rar
+*.tar
+.htaccess
+
