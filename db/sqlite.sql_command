@@ -1,0 +1,157 @@
+# modified by yingshaoxo
+
+
+CREATE TABLE `hu60_addin_chat_data` (
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  `room` varchar(32) NOT NULL,
+  `lid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `uname` varchar(16) NOT NULL,
+  `content` mediumblob NOT NULL,
+  `time` bigint(20) NOT NULL,
+  `hidden` int(11) NOT NULL DEFAULT '0'
+);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `hu60_addin_chat_list`
+--
+
+CREATE TABLE `hu60_addin_chat_list` (
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `ztime` bigint(20) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `hu60_bbs_forum_meta`
+--
+
+CREATE TABLE `hu60_bbs_forum_meta` (
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `mtime` bigint(20) NOT NULL DEFAULT '0',
+  `notopic` tinyint(1) NOT NULL DEFAULT '0'
+);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `hu60_bbs_topic_content`
+--
+
+CREATE TABLE `hu60_bbs_topic_content` (
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  `topic_id` int(11) NOT NULL,
+  `ctime` bigint(20) NOT NULL,
+  `mtime` bigint(20) NOT NULL,
+  `content` mediumblob NOT NULL,
+  `uid` int(11) NOT NULL,
+  `reply_id` int(11) NOT NULL,
+  `floor` int(11) NOT NULL DEFAULT '0',
+  `locked` tinyint(1) NOT NULL DEFAULT '0'
+);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `hu60_bbs_topic_meta`
+--
+
+CREATE TABLE `hu60_bbs_topic_meta` (
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  `content_id` int(11) NOT NULL,
+  `title` varchar(150) NOT NULL,
+  `read_count` int(11) NOT NULL DEFAULT '0',
+  `uid` int(11) NOT NULL,
+  `ctime` bigint(20) NOT NULL,
+  `mtime` bigint(20) NOT NULL,
+  `level` tinyint(4) NOT NULL DEFAULT '0',
+  `forum_id` int(11) NOT NULL,
+  `locked` tinyint(1) NOT NULL DEFAULT '0'
+);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `hu60_msg`
+--
+
+CREATE TABLE `hu60_msg` (
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  `touid` int(11) NOT NULL,
+  `byuid` int(11) NOT NULL,
+  `type` tinyint(4) NOT NULL DEFAULT '1',
+  `isread` int(11) NOT NULL,
+  `content` blob NOT NULL,
+  `ctime` bigint(20) NOT NULL,
+  `rtime` bigint(20) NOT NULL DEFAULT '0'
+);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `hu60_speedtest`
+--
+
+CREATE TABLE `hu60_speedtest` (
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  `ip` varchar(255) DEFAULT NULL,
+  `tag` varchar(10) DEFAULT NULL,
+  `startTime` bigint(20) DEFAULT NULL,
+  `endTime` bigint(11) DEFAULT NULL,
+  `speed` float DEFAULT NULL,
+  `success` tinyint(1) DEFAULT NULL,
+  `errCode` varchar(20) DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `hu60_token`
+--
+
+CREATE TABLE `hu60_token` (
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  `lifetime` bigint(20) NOT NULL,
+  `token` char(32) NOT NULL,
+  `uid` int(11) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `hu60_user`
+--
+
+CREATE TABLE `hu60_user` (
+  `uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  `name` varchar(16) NOT NULL,
+  `pass` char(32) NOT NULL,
+  `sid` varchar(64) NOT NULL,
+  `safety` blob,
+  `regtime` bigint(20) NOT NULL,
+  `sidtime` bigint(20) NOT NULL,
+  `acctime` bigint(20) NOT NULL,
+  `info` blob,
+  `mail` varchar(255) DEFAULT NULL,
+  `regphone` char(11) DEFAULT NULL,
+  `permission` bit(8) NOT NULL DEFAULT '0',
+  `active` tinyint(1) NOT NULL DEFAULT '0'
+);
+
+INSERT INTO `hu60_bbs_forum_meta` (
+`id` ,
+`parent_id` ,
+`name` ,
+`mtime` ,
+`notopic`
+)
+VALUES (
+NULL , '0', '畅所欲言', '1713848028', '0'
+);
+
