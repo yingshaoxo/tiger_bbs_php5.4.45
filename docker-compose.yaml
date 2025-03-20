@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+#  old_php:
+#    image: php:5.4.45-apache
+#    #network_mode: "host"        
+#    ports:
+#      - '7071:80'
+#    volumes:
+#      - .:/var/www/html:rw
+#    restart: always
+
+  old_php:
+    image: yeszao/php:5.4.45-fpm-alpine
+    #network_mode: "host"
+    ports:
+      - '7071:7071' #outside: inside
+    volumes:
+      - .:/var/www/html:rw
+    working_dir: /var/www/html
+    command: sh -c "php -S [::]:7071 -t ."
+    restart: always
+
+  #old_my_sql:
+  #  image: yobasystems/alpine-mariadb:10
+  #  network_mode: "host"
+  #  volumes:
+  #    - ./data:/var/lib/mysql:rw
+  #  environment:
+  #    - MYSQL_ROOT_PASSWORD=root_password
+  #    - MYSQL_DATABASE=hu60
+  #    - MYSQL_USER=root
+  #    - MYSQL_PASSWORD=root
+  #  #ports:
+  #  #  - '3306:3306'
+  #  restart: always

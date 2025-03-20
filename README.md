@@ -57,7 +57,7 @@ visit http://127.0.0.1:7071/
 ### fix mysql connection problem and run it again
 ```
 go to "config/db.php", set mysql name and password. (it is hard to let php visit mysql in the same docker-compose file, if you know, tell me)
-go to "db/mysql.sql", use 'phpMyAdmin' or other mysql tool to import that *.sql file into database. (it seems like phpstudy has a built-in mysql management tool, but I don't trust it in linux, so I dropped this project)
+go to "db/mysql.sql", use 'phpMyAdmin4.0' or other mysql tool to import that *.sql file into database. (it seems like phpstudy has a built-in mysql management tool, but I don't trust it in linux, so I dropped this project)
 ```
 
 If you you sqlite, it is also ok. Just change db.php accordingly.
